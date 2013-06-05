@@ -1,0 +1,7 @@
+#*
+*.sublime-*
+*~
+.#*
+/tuqqedin
+/tuq/tuq
+/parser/antlr/output/

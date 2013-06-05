@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<base href="/_static/"/>
+	<meta charset="utf-8">
+	<title>tuqqedin</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link href="css/bootstrap.css" rel="stylesheet">
+	<link href="css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="css/app.css" rel="stylesheet">
+</head>
+
+<body>
+
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="btn btn-navbar" data-toggle="collapse"
+					data-target=".nav-collapse"> <span class="icon-bar"></span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span>
+				</a> <a class="brand" href="#">tuqqedon</a>
+				<div class="nav-collapse collapse">
+					<ul class="nav">
+						<li class="active"><a href="#">Home</a></li>
+					</ul>
+				</div>
+				<!--/.nav-collapse -->
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<pre id="console" class="console"></pre>
+
+	</div>
+	<!-- /container -->
+
+	<!-- Le javascript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.console.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+
+	<script>
+        $(document).ready(function() {
+            function runQuery(line, report) {
+                //query = $("#query").val();
+                $.ajax({
+                    type : 'POST',
+                    url : "/query",
+                    data : JSON.stringify({
+                        "query" : line
+                    }),
+                    success : function(data) {
+                        str = JSON.stringify(data, null, "    ")
+                        report(str)
+                    },
+                    error: function(http) {
+                        report(http.responseText)   
+                    },
+                    dataType : "json",
+                    contentType : "application/json"
+                });
+
+            }
+
+            /* Fourth console */
+            var console4 = $('#console');
+            var controller4 = console4.console({
+                promptLabel : 'tuq> ',
+                continuedPromptLabel : '  -> ',
+                commandValidate : function(line) {
+                    if (line == "")
+                        return false;
+                    else
+                        return true;
+                },
+                commandHandle : function(line, report) {
+                    if (line.match(/$/)) {
+                        controller4.continuedPrompt = false;
+                        //alert("Execute: " + line);
+                        runQuery(line, report)
+                        return;
+                    } else {
+                        controller4.continuedPrompt = true;
+                        return;
+                    }
+                },
+                promptHistory : true
+            });
+        });
+    </script>
+
+
+</body>
+</html>

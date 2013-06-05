@@ -1,0 +1,45 @@
+body {
+	padding-top: 60px;
+	/* 60px to make the container go all the way to the bottom of the topbar */
+}
+
+pre.console div.jquery-console-inner {
+	width: 98%;
+	height: 500px;
+	background: #efefef;
+	padding: 0.5em;
+	overflow: auto
+}
+
+pre.console {
+	font-size: 14px;
+	margin-top: 1em
+}
+
+pre.console div.jquery-console-prompt-box {
+	color: #444;
+	font-family: monospace;
+}
+
+pre.console div.jquery-console-focus span.jquery-console-cursor {
+	background: #444;
+	color: #eee;
+	font-weight: bold
+}
+
+pre.console div.jquery-console-message-error {
+	color: #ef0505;
+	font-family: sans-serif;
+	font-weight: bold;
+	padding: 0.1em;
+}
+
+pre.console div.jquery-console-message-success {
+	color: #187718;
+	font-family: monospace;
+	padding: 0.1em;
+}
+
+pre.console span.jquery-console-prompt-label {
+	font-weight: bold
+}
