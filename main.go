@@ -169,7 +169,9 @@ func doExecuteStatement(w http.ResponseWriter, r *http.Request, s ast.Statement)
 	}
 
 	if err != nil {
-		log.Printf("error plannging statement")
+		log.Printf("error planning statement")
+		showError(w, r, err.Error(), 400)
+		return
 	}
 
 	if len(plans) > 0 {
