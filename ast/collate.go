@@ -14,11 +14,11 @@ package ast
 
 import (
 	"fmt"
-
+	"code.google.com/p/go.text/locale"
 	"code.google.com/p/go.exp/locale/collate"
 )
 
-var icuCollator = collate.New("icu")
+var icuCollator = collate.New(locale.Make("icu"))
 
 // CouchDB-compatible collation/comparison of JSON values.
 // See: http://wiki.apache.org/couchdb/View_collation#Collation_Specification
